@@ -1,4 +1,9 @@
-const API_URL = `http://localhost:4000/api`;
+export const BACKEND_URL =
+  import.meta.env.MODE === "development"
+    ? "http://localhost:4000"
+    : "https://reno-task.onrender.com";
+
+export const API_URL = `${BACKEND_URL}/api`;
 
 //create a school
 export const addSchool = async (formData) => {

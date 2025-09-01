@@ -3,14 +3,23 @@ const cors = require("cors");
 const db = require("./config/db"); // import db
 const schoolRoutes = require("./routes/addSchool");
 const createSchoolsTable = require('./models/initDB')
+const path = require("path");
+
 
 const app = express();
-app.use(cors({
-  origin: "http://localhost:5173", // Vite frontend URL
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "https://renoschools.netlify.app", // Netlify URL
+      "http://localhost:5173",           // Vite local dev
+    ],
+    credentials: true,
+  })
+);
+
 app.use(express.json());
-app.use("/schoolImages", express.static("schoolImages"));
+// app.use("/schoolImages", express.static("schoolImages"));
+app.use("/schoolImages", express.static(path.join(__dirname, "schoolImages")));
 
 createSchoolsTable();
 

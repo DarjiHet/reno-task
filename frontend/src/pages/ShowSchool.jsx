@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import { getSchools, deleteSchool } from "../services/schoolService";
-
+import { getSchools, deleteSchool, BACKEND_URL } from "../services/schoolService";
 export default function ShowSchools() {
   const [schools, setSchools] = useState([]);
 
@@ -43,9 +42,8 @@ export default function ShowSchools() {
               ✕
             </button>
 
-            {/* School Image */}
             <img
-              src={`http://localhost:4000${s.image}`}
+              src={`${BACKEND_URL}${s.image}`}
               alt={s.name}
               className="w-full h-48 object-cover rounded-md mb-4"
             />
